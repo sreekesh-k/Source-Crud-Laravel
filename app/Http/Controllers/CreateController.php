@@ -45,4 +45,50 @@ class CreateController extends Controller
 }
 
 
+public function view()
+{
+    $sourcemembers = Sourcemembers::all();  // Fetch all sourcemembers
+    return view('viewmembers', ['sourcemembers' => $sourcemembers]);  // Pass the correct variable to the view
+}
+
+
+public function edit(Sourcemembers $member)
+{
+        return view('edit',['member'=>$member]);
+}
+public function editpost(Request $request, Sourcemembers $member)
+{
+    $data = $request->validate([
+        'name' => 'required',
+        'email' => 'required|email',
+        'phone' => 'required|numeric',
+        'description' => 'required',
+        'image' => 'nullable|image|mimes:jpg,jpeg,png,gif|max:2048', // Image is optional during update
+    ]);
+
+    // Update the member's information
+    $member->update([
+        'name' => $data['name'],
+        'email' => $data['email'],
+        'phone' => $data['phone'],
+        'description' => $data['description'],
+    ]);
+
+    // Handle image upload if provided
+    if ($request->hasFile('image')) {
+        $imagePath = $request->file('image')->store('images', 'public'); // Store the image in 'images' folder
+        $member->update(['image' => $imagePath]); // Update the image field
+    }
+
+    // Redirect with a success message
+    return redirect()->route('list')->with('success', 'Member updated successfully.');
+}
+
+public function Destroy(Sourcemembers $member)
+{
+    $member->delete();
+    return redirect(route('list'));
+}
+
+
 }

@@ -26,6 +26,9 @@
                </li>
                     <a class="nav-link active" aria-current="page" href="{{ route('create') }}">Add Members</a>
                 </li>
+                </li>
+                    <a class="nav-link active" aria-current="page" href="{{ route('list') }}">View Members</a>
+                </li>
                 
             </ul>
            
