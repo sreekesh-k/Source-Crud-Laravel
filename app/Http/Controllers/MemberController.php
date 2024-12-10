@@ -66,4 +66,9 @@ class MemberController extends Controller
         $sourcemembers->save();
         return back()->withSuccess('Member updated!!');
     }
+    public function mdelete($id){
+        $sourcemembers = sourcemembers::where('id',$id)->first();
+        $sourcemembers->delete();
+        return back()->withSuccess('product deleted !!');
+    }
 }

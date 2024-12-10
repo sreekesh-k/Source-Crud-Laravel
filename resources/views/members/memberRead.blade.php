@@ -45,7 +45,11 @@
               <td>{{$member->phone}}</td>
               <td>{{$member->email}}</td>
               <td><a href="member/{{$member->id}}/edit" class="btn btn-primary">edit</a>
-              <a href="member/{{$member->id}}/delete" class="btn btn-danger">delete</a></td>
+              <form action="/members/{id}/delete" class="d-inline" method="post">
+                @csrf
+                @method('delete')
+                <button type="submit" class="btn btn-danger ml-3">delete</button>
+              </form>
             </tr>
               @endforeach
           </tbody>
