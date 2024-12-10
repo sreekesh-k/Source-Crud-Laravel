@@ -7,12 +7,15 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
+@extends('components.layout')
+@section('content')
     <nav class="navbar bg-light">
         <div class="container-fluid">
             <span class="navbar-brand">Source Developers</span>
         </div>
     </nav>
     <div class="container mt-4">
+
         @if (session('success'))
             <div class="alert alert-success">
                 {{ session('success') }}
@@ -47,5 +50,6 @@
         </table>
         <a href="{{ route('creating') }}" class="btn btn-primary">Create New</a>
     </div>
+    @endsection
 </body>
 </html>
