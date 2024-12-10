@@ -44,7 +44,7 @@
               <td><img src="members/{{$member->image}}" class="rounded-circle" width="50" height="50"></td>
               <td>{{$member->phone}}</td>
               <td>{{$member->email}}</td>
-              <td><a href="members/{{$member->id}}/edit" class="btn btn-primary">edit</a></td>
+              <td><a href="member/{{$member->id}}/edit" class="btn btn-primary">edit</a></td>
             </tr>
               @endforeach
           </tbody>

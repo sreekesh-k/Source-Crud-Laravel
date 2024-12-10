@@ -37,4 +37,8 @@ class MemberController extends Controller
         $sourcemembers->save();
         return back()->withSuccess('Member Added!!');
     }
+    public function medit($id){
+        $sourcemembers = sourcemembers::where('id',$id)->first();
+        return view('members.memberEdit',['members'=>$sourcemembers]);
+    }
 }
