@@ -41,4 +41,29 @@ class MemberController extends Controller
         $sourcemembers = sourcemembers::where('id',$id)->first();
         return view('members.memberEdit',['members'=>$sourcemembers]);
     }
+    public function mupdate(Request $request,$id){
+        
+        $request->validate([
+            'name'=>'required'
+            ,'image'=>'nullable|mimes:jpeg,gif,png,jpg|max:10000'
+            ,'phone'=>'required'
+            ,'email'=>'required'
+        ]);
+        $sourcemembers = sourcemembers::where('id',$id)->first();
+
+        if(isset($request->image)){
+            
+        $imagename= time().'.'.$request->image->extension();
+        $request->image->move(public_path('members',$imagename));
+        $sourcemembers->image =$imagename;
+        }
+
+
+        $sourcemembers->name=$request->name;
+        $sourcemembers->phone=$request->phone;
+        $sourcemembers->email=$request->email;
+        
+        $sourcemembers->save();
+        return back()->withSuccess('Member updated!!');
+    }
 }
