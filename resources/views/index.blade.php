@@ -25,6 +25,7 @@
             <thead>
                 <tr>
                     <th>SI</th>
+                    <th>Photo</th> <!-- Photo column before name -->
                     <th>Name</th>
                     <th>Email</th>
                     <th>Phone</th>
@@ -36,6 +37,13 @@
                 @foreach ($categories as $index => $category)
                     <tr>
                         <td>{{ $index + 1 }}</td>
+                        <td>
+                            @if ($category->photo)
+                                <img src="{{ asset('storage/' . $category->photo) }}" alt="Category Photo" width="100">
+                            @else
+                                No Photo
+                            @endif
+                        </td> <!-- Display photo -->
                         <td>{{ $category->name }}</td>
                         <td>{{ $category->email }}</td>
                         <td>{{ $category->phone_no }}</td>
@@ -50,6 +58,6 @@
         </table>
         <a href="{{ route('creating') }}" class="btn btn-primary">Create New</a>
     </div>
-    @endsection
+@endsection
 </body>
 </html>

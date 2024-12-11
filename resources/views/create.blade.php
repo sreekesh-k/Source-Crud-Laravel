@@ -20,7 +20,8 @@
                 @endforeach
             </ul>
         @endif
-        <form action="{{ route('create.confirm') }}" method="POST">
+
+        <form action="{{ route('create.confirm') }}" method="POST" enctype="multipart/form-data"> <!-- Added enctype -->
             @csrf
             <div class="mb-3">
                 <label class="form-label">Name</label>
@@ -38,6 +39,13 @@
                 <label class="form-label">Description</label>
                 <textarea class="form-control" name="description"></textarea>
             </div>
+
+            <!-- Photo Upload Field -->
+            <div class="mb-3">
+                <label class="form-label">Upload Photo</label>
+                <input type="file" class="form-control" name="photo" accept="image/*">
+            </div>
+
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
     </div>

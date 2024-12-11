@@ -16,7 +16,6 @@
     </nav>
 
     <div class="container mt-4">
-       
         @if ($errors->any())
             <div class="alert alert-danger">
                 <ul>
@@ -27,38 +26,42 @@
             </div>
         @endif
 
-        
-        <form action="{{ route('update.confirm', ['category' => $category->id]) }}" method="POST" class="ms-auto me-auto" style="width: 400px;">
+        <form action="{{ route('update.confirm', ['category' => $category->id]) }}" method="POST" class="ms-auto me-auto" style="width: 400px;" enctype="multipart/form-data">
             @csrf
-            @method('PUT') 
+            @method('PUT')
 
-           
             <div class="mb-3">
                 <label for="name" class="form-label">Category Name</label>
-                <input type="text" class="form-control" id="name" name="name" placeholder="Enter category name"
-                    value="{{ $category->name }}" required>
+                <input type="text" class="form-control" id="name" name="name" placeholder="Enter category name" value="{{ $category->name }}" required>
             </div>
 
-          
             <div class="mb-3">
                 <label for="email" class="form-label">Email</label>
-                <input type="email" class="form-control" id="email" name="email" placeholder="Enter email"
-                    value="{{ $category->email }}" required>
+                <input type="email" class="form-control" id="email" name="email" placeholder="Enter email" value="{{ $category->email }}" required>
             </div>
 
-            
             <div class="mb-3">
                 <label for="phone_no" class="form-label">Phone Number</label>
-                <input type="text" class="form-control" id="phone_no" name="phone_no" placeholder="Enter phone number"
-                    value="{{ $category->phone_no }}" required>
+                <input type="text" class="form-control" id="phone_no" name="phone_no" placeholder="Enter phone number" value="{{ $category->phone_no }}" required>
             </div>
 
-        
             <div class="mb-3">
                 <label for="description" class="form-label">Description</label>
                 <textarea class="form-control" id="description" name="description" placeholder="Enter description" required>{{ $category->description }}</textarea>
             </div>
 
+            <!-- Image Upload Section -->
+            <div class="mb-3">
+                <label for="photo" class="form-label">Category Photo</label>
+                <input type="file" class="form-control" id="photo" name="photo">
+                
+                <!-- Display current photo if it exists -->
+                @if ($category->photo)
+                    <div class="mt-2">
+                        <img src="{{ asset('storage/' . $category->photo) }}" alt="Current Photo" width="100">
+                    </div>
+                @endif
+            </div>
 
             <button type="submit" class="btn btn-primary">Update</button>
         </form>

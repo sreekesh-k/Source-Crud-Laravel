@@ -15,6 +15,7 @@ class Category extends Model
         'phone_no',
         'email',
         'description',
+        'photo',
     ];
 
     public $timestamps = true;
