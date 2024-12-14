@@ -21,9 +21,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="{{ route('home') }}">Home</a>
-               </li>
+               
                     <a class="nav-link active" aria-current="page" href="{{ route('create') }}">Add Members</a>
                 </li>
                 </li>
@@ -31,6 +29,11 @@
                 </li>
                 
             </ul>
+            <form action="{{ route('logout') }}" method="POST" class="d-flex" role="search">
+                @csrf
+                @method('DELETE')
+                <button class="btn btn-danger" type="submit">Logout</button>
+            </form>
            
         </div>
     </div>

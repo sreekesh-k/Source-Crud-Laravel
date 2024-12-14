@@ -34,13 +34,12 @@ return [
     | Supported: "session"
     |
     */
-
-    'guards' => [
-        'web' => [
-            'driver' => 'session',
-            'provider' => 'users',
-        ],
+'guards' => [
+    'web' => [
+        'driver' => 'session',
+        'provider' => 'admins',  // This is fine as long as 'admins' is correctly configured below
     ],
+],
 
     /*
     |--------------------------------------------------------------------------
@@ -59,17 +58,12 @@ return [
     |
     */
 
-    'providers' => [
-        'users' => [
-            'driver' => 'eloquent',
-            'model' => env('AUTH_MODEL', App\Models\User::class),
-        ],
-
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
+'providers' => [
+    'admins' => [
+        'driver' => 'eloquent',
+        'model' => App\Models\Admin::class,
     ],
+],
 
     /*
     |--------------------------------------------------------------------------
@@ -90,15 +84,12 @@ return [
     |
     */
 
-    'passwords' => [
-        'users' => [
-            'provider' => 'users',
-            'table' => env('AUTH_PASSWORD_RESET_TOKEN_TABLE', 'password_reset_tokens'),
-            'expire' => 60,
-            'throttle' => 60,
-        ],
+ 'providers' => [
+    'admins' => [
+        'driver' => 'eloquent',
+        'model' => App\Models\Admin::class,  // Make sure this is correct
     ],
-
+],
     /*
     |--------------------------------------------------------------------------
     | Password Confirmation Timeout
