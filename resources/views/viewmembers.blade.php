@@ -29,6 +29,7 @@
                     <th>Image</th>
                     <th>Edit</th>
                     <th>Delete</th>
+                    <th>Chat</th>
                 </tr>
             </thead>
             <tbody>
@@ -54,6 +55,10 @@
                 <button type="submit" class="btn btn-danger">Delete</button>
             </form>
         </td>
+        <td>
+    <a href="{{ route('checkChatUser', ['id' => $member->id]) }}" class="btn btn-info">Chat</a>
+</td>
+
     </tr>
     @endforeach
 </tbody>

@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ChatController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CreateController;
 
@@ -23,4 +24,8 @@ Route::get('/viewmembers', [CreateController::class, 'view'])->name('list');
 Route::get('/members/edit/{member}', [CreateController::class, 'edit'])->name('edit');
 Route::put('/members/{member}', [CreateController::class, 'editpost'])->name('update');
 Route::delete('/destroy/{member}', [CreateController::class, 'Destroy'])->name('destroy');
+
+Route::get('/check-chat-user/{id}', [ChatController::class, 'checkUser'])->name('checkChatUser');
+Route::post('/add-chat-user', [ChatController::class, 'addUser'])->name('addChatUser');
+Route::get('/chat/{id}', [ChatController::class, 'showChatPage'])->name('chatPage');
     
