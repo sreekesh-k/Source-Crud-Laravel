@@ -10,10 +10,10 @@ use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
 {
-    // Show login form
+    
     public function showLoginForm()
     {
-        return view('login');  // Returns the login form view
+        return view('login'); // Returns the login form view
     }
 
     // Handle login form submission
